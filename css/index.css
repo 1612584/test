@@ -20,8 +20,8 @@ body {
     border: 1px solid #80808000;
     grid-column: 6/9;
     grid-row: 3;
-    height: 470px;
-    width: 292px;
+    height: 570px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +55,7 @@ input {
     margin-bottom: 10px;
     outline-style: none;
     padding: 5px;
-    width: 70%;
+    width: 60%;
 }
 
 input#submit {
@@ -71,4 +71,12 @@ input#submit {
 
 input#submit:hover {
     background: linear-gradient(to right, #fc466b, #3f5efb);
+}
+
+span {
+    font-size: 12px;
+    display: block;
+    font-weight: lighter;
+    color: red;
+    width: 200px;
 }

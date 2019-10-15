@@ -4,29 +4,39 @@
 <head>
     <title>Đăng kí</title>
     <link rel="stylesheet" href="css/index.css">
-
+    <script src="scripts/jquery-3.4.1.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script> -->
+    <script language="JavaScript" type="text/javascript" src="scripts/sign-up.js">
+    </script>
 </head>
 
 <body>
     <div class="to">
-        <div class="form" action="#">
+        <form class="form" method="get" id="formSignUp">
             <h2>Đăng ký</h2>
-            <label style="margin-left: -150px;">Họ và tên</label>
-            <input type="text" name="hoten" required>
-            <label style="margin-left: -150px;">Username</label>
-            <input type="text" name="username" required>
-            <label>Số điện thoại</label>
-            <input type="text" name="sdt" required>
 
+
+            <label style="margin-left: -150px;">Họ và tên</label>
+            <input type="text" id="hoten" name="hoten" placeholder="nhập họ tên không dấu">
+            <span id="hotenspan"></span>
+            <label style="margin-left: -150px;">Username</label>
+            <input type="text" name="username" id="username" placeholder="nhập username">
+            <span id="usernamespan"></span>
+            <label>Số điện thoại</label>
+            <input type="text" name="sdt" id="sdt" placeholder="nhập số điện thoại">
+            <span id="sdtspan"></span>
             <label style="margin-left: -150px;">Email bạn</label>
 
-            <input type="email" name=" email" required>
+            <input type="text" name="email" id="email" placeholder="nhập email">
+            <span id="emailspan"></span>
             <label style="margin-left: -150px; ">Ngày sinh</label>
-            <input type="date " name="ngaysinh " required>
+            <input type="date" name="ngaysinh" id="ngaysinh" placeholder="chọn ngày sinh">
+            <span id="ngaysinhspan"></span>
 
-            <button>Gui</button>
-            <input id="submit " type="submit" name="submit " value="Gửi ">
-        </div>
+            <button type="submit ">Đăng ký</button>
+            <!-- <input id="submit " type="button " name="submit " value="Gửi "> -->
+        </form>
+
     </div>
 </body>
 
