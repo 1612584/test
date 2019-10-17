@@ -84,16 +84,18 @@
             async function getUserAsync() {
                 let res = await fetch(`https://reqres.in/api/users?page=1`);
                 // console.log(res);
-                let Users = await res.json();
-                console.log(Users);
-                Users = await JSON.stringify(Users.data);
+                await res.json().then(Users => {
+                    console.log(Users);
+                    loadData(Users);
+                });
+                // console.log(Users);
+                // Users = await JSON.stringify(Users.data);
                 // console.log(`parse object ${Users}`);
 
 
-                await ((Users) => {
-                    loadData(Users);
-                })
-                console.log(`await ` + Users);
+                // await ((Users) => {
+                //     loadData(Users);
+                // }) 
 
                 // for (const user in Users.data) {
                 //     console.log(`${user}`);
@@ -116,7 +118,9 @@
         });
 
         function loadData(Users) {
-            for (const user in Users) {
+            let data = Users.data;
+            console.log(data);
+            for (const user in data) {
                 console.log(`${user}`);
                 $('tbody').append(
                     ` <tr>
