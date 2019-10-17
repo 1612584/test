@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 50px 350px 50px;
+        }
+        
+        header {
+            grid-column: span 12;
+        }
+        
+        aside {
+            grid-column: span 2;
+            background: yellowgreen;
+        }
+        
+        main {
+            grid-column: span 10;
+            background: blue;
+        }
+        
+        footer {
+            grid-column: span 12;
+            background: brown
+        }
+        
+        header {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+        }
+        
+        header>div {
+            background-color: teal;
+            border: 1px solid darkorchid;
+        }
+        
+        header>div:nth-child(3) {
+            grid-column: 10;
+        }
+        
+        header>div:nth-child(2) {
+            grid-column: 9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                Home
+            </div>
+            <div>Infor</div>
+            <div>
+                Login
+            </div>
+        </header>
+        <aside>MENU</aside>
+        <main>CONTENT</main>
+        <footer>FOOTER</footer>
+    </div>
+</body>
+
+</html>

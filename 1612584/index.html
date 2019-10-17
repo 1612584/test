@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <title>BT tuan 8 Jquery-Bootstraps-Ajax</title>
+    <script src="scripts/jquery-3.4.1.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Navbar</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    <header>
+        <!-- <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Title 1</h5>
+                        <p class="card-text">some text</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-3">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">List</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Firs Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Avartar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+            </div>
+        </div>
+    </header>
+    <script>
+        $(document).ready(() => {
+            async function getUserAsync() {
+                let res = await fetch(`https://reqres.in/api/users?page=1`);
+                // console.log(res);
+                let Users = await res.json();
+                console.log(Users);
+                Users = await JSON.stringify(Users.data);
+                // console.log(`parse object ${Users}`);
+
+
+                await ((Users) => {
+                    loadData(Users);
+                })
+                console.log(`await ` + Users);
+
+                // for (const user in Users.data) {
+                //     console.log(`${user}`);
+                //     $('tbody').append(
+                //         ` <tr>
+                //             <th scope="row">${user.id}</th>
+                //             <td>${user.email}</td>
+                //             <td>${user.first_name}</td>
+                //             <td>${user.last_name}</td>
+                //             <td>${user.avatar}</td>
+                //         </tr>`
+                //     );
+                // }
+
+
+
+                // return await Users.json();
+            };
+            getUserAsync();
+        });
+
+        function loadData(Users) {
+            for (const user in Users) {
+                console.log(`${user}`);
+                $('tbody').append(
+                    ` <tr>
+                            <th scope="row">${user.id}</th>
+                            <td>${user.email}</td>
+                            <td>${user.first_name}</td>
+                            <td>${user.last_name}</td>
+                            <td>${user.avatar}</td>
+                        </tr>`
+                );
+            }
+        }
+    </script>
+</body>
+
+</html>
