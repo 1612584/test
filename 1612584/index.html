@@ -8,6 +8,7 @@
 
     <title>BT tuan 7 Jquery-Bootstraps-Ajax</title>
     <script src="scripts/jquery-3.4.1.js" crossorigin="anonymous"></script>
+    <script src="scripts/pagination.js"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 </head>
 
@@ -56,16 +57,22 @@
                 </table>
                 <nav aria-label="..." class="pagination_nav">
                     <ul class="pagination">
-                        <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <!-- static
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        static -->
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
     <script>
-        function getUserAsync(pageNum, pageTotal) {
+        function getUserAsync() {
 
 
             let page = 1;
@@ -77,24 +84,52 @@
                 .then(async(res) => {
                     const Users = await res.json();
                     loadData(Users);
+                    loadPagination(Users.total_pages, Users.page);
+
+
                 })
                 .catch(error => {
-                    alert('Some thing wrong');
+                    alert(error);
                 });
 
         };
-        console.log('abv');
 
         $(document).ready(() => {
 
             getUserAsync();
-            $('ul.pagination li a').on('click', () => {
-                alert('click this');
-
+            $('ul.pagination li a').on('click', async() => {
+                await alert('click a');
             });
 
         });
 
+        function loadPagination(total_page, page) {
+            $('.pagination').append(`
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>`);
+
+            for (let i = 1; i <= total_page; i++) {
+
+                // $('.pagination').append(`
+
+
+                if (i == page) {
+                    $('.pagination').append(`
+
+                        <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
+
+                    `)
+                } else {
+                    $('.pagination').append(`
+
+                        <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+
+                `)
+                }
+            }
+
+            $('.pagination').append(`
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>`);
+        }
 
         function loadData(Users) {
 
@@ -119,33 +154,11 @@
             // <li class="page-item"><a class="page-link {{  ${i} == ${current}  ? 'active' : '' }}" ....
             //        href="#">${i}</a></li>`);
 
-            $('.pagination').append(`
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>`);
-            for (let i = 1; i <= total_page; i++) {
 
-                // $('.pagination').append(`
-
-
-                if (i == current) {
-                    $('.pagination').append(`
-
-                        <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
-
-                    `)
-                } else {
-                    $('.pagination').append(`
-
-                        <li class="page-item"><a class="page-link" href="#">${i}</a></li>
-
-                `)
-                }
-            }
-            $('.pagination').append(`
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>`);
         }
-        let tags = $('ul.pagination li a').on('click', (tag) => {
-            console.log(`${tag}`);
-        })
+        // let tags = $('ul.pagination li a').on('click', (tag) => {
+        //     console.log(`${tag}`);
+        // })
     </script>
 </body>
 
